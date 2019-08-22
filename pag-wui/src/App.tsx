@@ -1,25 +1,49 @@
 import React from 'react';
-import logo from './logo.svg';
+import { Helmet } from 'react-helmet';
+import { Provider } from 'react-redux';
+import { PersistGate } from 'redux-persist/integration/react';
+import store, { persistor } from './store';
 import './App.css';
 
 const App: React.FC = () => {
   return (
-    <div className="App">
-      <header className="App-header">
-        <img src={logo} className="App-logo" alt="logo" />
-        <p>
-          Edit <code>src/App.tsx</code> and save to reload.
-        </p>
-        <a
-          className="App-link"
-          href="https://reactjs.org"
-          target="_blank"
-          rel="noopener noreferrer"
-        >
-          Learn React
-        </a>
-      </header>
-    </div>
+    <Provider store={store}>
+      <PersistGate loading={null} persistor={persistor}>
+        <Helmet>
+          <title>PAG WUI</title>
+
+          <link href="https://fonts.googleapis.com/css?family=Roboto:300,400,500" rel="stylesheet" />
+
+          <style>{`
+            *, *:before, *:after {
+              box-sizing: border-box;
+            }
+
+            body,
+            html,
+            #root {
+              height: 100%;
+            }
+
+            body {
+              font-size: 100%;
+              font-family: 'Roboto', sans-serif;
+              overflow-x: hidden;
+            }
+
+            a {
+              cursor: pointer;
+            }
+
+            input[type=number]::-webkit-inner-spin-button,
+            input[type=number]::-webkit-outer-spin-button {
+              -webkit-appearance: none;
+              margin: 0;
+            }
+          `}</style>
+        </Helmet>
+      </PersistGate>
+    </Provider>
   );
 }
 
