@@ -9,8 +9,12 @@ const pixelate = function (req, res, next) {
 
 	Jimp.read(imagePath, (err, image) => {
 		if(err) throw err;
-		image.resize(256, 256)
-		.write(imagepxPath);
+		image
+			.resize(512, 512)
+			.gaussian(2)
+			.blur(2)
+			.pixelate(10)
+			.write(imagepxPath);
 	});
 
 	next();
