@@ -1,6 +1,7 @@
 const express = require('express');
 const path = require('path');
 const uploadImage = require('../middlewares/uploadMiddleware');
+const pixelate = require('../middlewares/pixelateMiddleware');
 const debug = require('debug')('pag-api:server/images');
 const router = express.Router();
 
@@ -16,7 +17,14 @@ router.post('/', uploadImage.single('image'), function(req, res, next) {
   }
 
   debug('passed upload image');
-  res.json({imageUrl: `/images/${req.file.filename}`});
+  res.json({imageUrl: `/images/${req.file.filename}`, filename: req.file.filename});
+});
+
+router.get('/pixelated', pixelate, function(req, res, next) {
+	console.log("Endpoint");
+	console.log(req.query);
+	res.json({pixelatedImage: `/images/pixelated/${req.query.imageName}`});
+	next();
 });
 
 module.exports = router;
