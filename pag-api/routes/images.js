@@ -17,7 +17,7 @@ router.post('/', uploadImage.single('image'), function(req, res, next) {
   }
 
   debug('passed upload image');
-  res.json({imageUrl: `/images/${req.file.filename}`, filename: req.file.filename});
+  res.json({imageUrl: `/images/raw/${req.file.filename}`, filename: req.file.filename});
 });
 
 router.get('/pixelated', pixelate, function(req, res, next) {
