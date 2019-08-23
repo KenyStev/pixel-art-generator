@@ -1,13 +1,26 @@
 import React from 'react';
 import { Flex, Box, Button } from 'rebass';
 import { Label, Input } from '@rebass/forms';
+import styled from 'styled-components';
+
+const PixelateButton = styled(Button)`
+	background-color: #2590dc;
+	cursor: pointer;
+
+	${props => props.disabled && `
+		background-color: #d8ebf9;
+		cursor: not-allowed;
+	`}
+`;
 
 interface IUploadFormProps {
+	disabled: boolean;
 	onChange: (path: any) => void;
 	onClick: (event: any) => void;
 }
 
 const UploadForm: React.FC<IUploadFormProps> = ({
+	disabled = true,
 	onChange,
 	onClick
 }) => (
@@ -53,13 +66,13 @@ const UploadForm: React.FC<IUploadFormProps> = ({
 			<Box
 				px={2}
 			>
-				<Button
+				<PixelateButton
 					mr={2}
-					bg='#2590dc'
 					onClick={onClick}
+					disabled={disabled}
 				>
 					Pixelate
-				</Button>
+				</PixelateButton>
 			</Box>
 		</Flex>
 	</Box>

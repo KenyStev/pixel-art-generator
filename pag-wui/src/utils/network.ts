@@ -25,7 +25,6 @@ export function makeRequestObject(params: IMakeRequestObjectParams): XMLHttpRequ
 	return requestObject;
 }
 
-
 // Base fetch function wrapped for redux-saga
 export interface IResponse {
 	ok: boolean;
@@ -41,8 +40,6 @@ export function* makeRequest(
 	body: string | Blob | FormData
 ) {
 	const computedBody = method !== 'GET' ? body : undefined;
-
-	console.log('computedBody', computedBody);
 
 	let headers: any = {};
 
