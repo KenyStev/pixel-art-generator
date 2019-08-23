@@ -29,8 +29,13 @@ class Dashboard extends React.Component<IDashboardProps, IDashboardState> {
 			<Box>
 				<UploadForm
 					disabled={!this.state.imageToUpload}
-					onChange={(event) => {this.setState({imageToUpload: event.target.files[0]})}}
-					onClick={() => {this.props.imageUploadRequest(this.state.imageToUpload || {})}}
+					onChange={(event) => {
+						const imageToUpload = event.target.files[0];
+
+						this.setState({imageToUpload});
+						this.props.imageUploadRequest(imageToUpload || {});
+					}}
+					onClick={() => {}}
 				/>
 				<Flex
 					justifyContent='center'
@@ -45,11 +50,11 @@ class Dashboard extends React.Component<IDashboardProps, IDashboardState> {
 						border: '1px solid #2590dc'
 					}}
 				>
-					{/*{ fetching && <Loader size={80} /> }*/}
 					<DisplayImage
 						fetching={fetching}
 						uploadedImageData={uploadedImageData}
 						pixelatedImageData={pixelatedImageData}
+						loader={(loading) => (loading && <Loader size={80} />)}
 					/>
 				</Flex>
 			</Box>
