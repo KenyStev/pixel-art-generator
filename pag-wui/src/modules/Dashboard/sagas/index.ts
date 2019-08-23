@@ -3,7 +3,9 @@ import { imageUploadRequest } from '../actions';
 
 function* dashboardSaga() {
 	while(true) {
-		yield take(imageUploadRequest.getType());
+		const action = yield take(imageUploadRequest.getType());
+
+		console.log(action);
 	}
 }
 
