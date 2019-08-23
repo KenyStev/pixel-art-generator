@@ -4,6 +4,7 @@ import { Provider } from 'react-redux';
 import { PersistGate } from 'redux-persist/integration/react';
 import store, { persistor } from './store';
 import './App.css';
+import Dashboard from './modules/Dashboard';
 
 const App: React.FC = () => {
   return (
@@ -42,6 +43,7 @@ const App: React.FC = () => {
             }
           `}</style>
         </Helmet>
+        <Dashboard />
       </PersistGate>
     </Provider>
   );
