@@ -42,6 +42,8 @@ export function* makeRequest(
 ) {
 	const computedBody = method !== 'GET' ? body : undefined;
 
+	console.log('computedBody', computedBody);
+
 	let headers: any = {};
 
 	if (typeof body === 'string') {
@@ -54,7 +56,6 @@ export function* makeRequest(
 			method: method,
 			body: computedBody,
 			headers: headers,
-			credentials: 'include',
 			mode: 'cors',
 			redirect: 'follow'
 		});

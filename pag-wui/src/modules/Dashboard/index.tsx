@@ -11,7 +11,7 @@ import { Box } from 'rebass';
 import UploadForm from '../../components/presentationals/UploadForm';
 
 interface IDashboardState {
-	imageToUpload: string;
+	imageToUpload: File | null;
 }
 
 interface IDashboardProps {
@@ -21,15 +21,15 @@ interface IDashboardProps {
 
 class Dashboard extends React.Component<IDashboardProps, IDashboardState> {
 	state = {
-		imageToUpload: ''
+		imageToUpload: null
 	}
 
 	render() {
 		return (
 			<Box>
 				<UploadForm
-					onChange={(event) => {console.log(`changed`); console.log(event.target.value); this.setState({imageToUpload: event.target.value})}}
-					onClick={() => {console.log(`clicked pixelate`); this.props.imageUploadRequest({image: this.state.imageToUpload})}}
+					onChange={(event) => {console.log(`changed`); console.log(event.target.files); this.setState({imageToUpload: event.target.files[0]})}}
+					onClick={() => {console.log(`clicked pixelate`); this.props.imageUploadRequest(this.state.imageToUpload || {})}}
 				/>
 			</Box>
 		)

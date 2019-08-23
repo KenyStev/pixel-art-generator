@@ -9,7 +9,6 @@ const router = express.Router();
 /* POST image. */
 router.post('/', uploadImage.single('image'), function(req, res, next) {
   const imagePath = path.join(__dirname, 'public/images');
-  console.log(req.image);
 
   if (!req.file) {
   	res.status(401).json({error: 'Image not found, please provide an image'});
@@ -21,8 +20,6 @@ router.post('/', uploadImage.single('image'), function(req, res, next) {
 });
 
 router.get('/pixelated', pixelate, function(req, res, next) {
-	console.log("Endpoint");
-	console.log(req.query);
 	res.json({pixelatedImage: `/images/pixelated/${req.query.imageName}`});
 	next();
 });
