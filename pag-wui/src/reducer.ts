@@ -8,14 +8,15 @@ const persistConfig = {
 	storage: storage
 };
 
-type TStatePersisted = IStateDashboard & PersistPartial;
+// type TStatePersisted = IStateDashboard & PersistPartial;
 
 export interface IState {
-	dashboard: TStatePersisted;
+	dashboard: IStateDashboard;
 };
 
 const rootReducer = combineReducers<IState>({
-	dashboard: persistReducer(persistConfig, dashboardReducer)
+	// dashboard: persistReducer(persistConfig, dashboardReducer)
+	dashboard: dashboardReducer
 });
 
 export default rootReducer;

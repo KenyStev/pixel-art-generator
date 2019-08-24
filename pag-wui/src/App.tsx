@@ -9,41 +9,41 @@ import Dashboard from './modules/Dashboard';
 const App: React.FC = () => {
   return (
     <Provider store={store}>
+      <Helmet>
+        <title>PAG WUI</title>
+
+        <link href="https://fonts.googleapis.com/css?family=Roboto:300,400,500" rel="stylesheet" />
+
+        <style>{`
+          *, *:before, *:after {
+            box-sizing: border-box;
+          }
+
+          body,
+          html,
+          #root {
+            height: 100%;
+          }
+
+          body {
+            font-size: 100%;
+            font-family: 'Roboto', sans-serif;
+            overflow-x: hidden;
+          }
+
+          a {
+            cursor: pointer;
+          }
+
+          input[type=number]::-webkit-inner-spin-button,
+          input[type=number]::-webkit-outer-spin-button {
+            -webkit-appearance: none;
+            margin: 0;
+          }
+        `}</style>
+      </Helmet>
+      <Dashboard />
       <PersistGate loading={null} persistor={persistor}>
-        <Helmet>
-          <title>PAG WUI</title>
-
-          <link href="https://fonts.googleapis.com/css?family=Roboto:300,400,500" rel="stylesheet" />
-
-          <style>{`
-            *, *:before, *:after {
-              box-sizing: border-box;
-            }
-
-            body,
-            html,
-            #root {
-              height: 100%;
-            }
-
-            body {
-              font-size: 100%;
-              font-family: 'Roboto', sans-serif;
-              overflow-x: hidden;
-            }
-
-            a {
-              cursor: pointer;
-            }
-
-            input[type=number]::-webkit-inner-spin-button,
-            input[type=number]::-webkit-outer-spin-button {
-              -webkit-appearance: none;
-              margin: 0;
-            }
-          `}</style>
-        </Helmet>
-        <Dashboard />
       </PersistGate>
     </Provider>
   );

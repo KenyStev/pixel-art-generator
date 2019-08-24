@@ -30,7 +30,7 @@ const DisplayImage: React.FC<IDisplayImageProps> = ({
 	fetching = false,
 	uploadedImageData = null,
 	pixelatedImageData = null,
-	loader = (loading) => 'no loader'
+	loader = (loading) => 'loading...'
 }) => (
 	<Box
 		width={WIDTH}
@@ -47,7 +47,7 @@ const DisplayImage: React.FC<IDisplayImageProps> = ({
 		}
 		{ !uploadedImageData && !pixelatedImageData && 'no image selected' }
 		{ uploadedImageData && !pixelatedImageData && <Image width={1} height={HEIGHT} src={path(uploadedImageData.imageUrl)} />}
-		{ pixelatedImageData && <Image width={1} height={HEIGHT} src={path(pixelatedImageData.imageUrl)} />}
+		{ pixelatedImageData && <Image width={1} height={HEIGHT} src={path(pixelatedImageData.pixelatedImageUrl)} />}
 	</Box>
 )
 

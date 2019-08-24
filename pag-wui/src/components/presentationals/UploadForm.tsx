@@ -54,6 +54,7 @@ const UploadForm: React.FC<IUploadFormProps> = ({
 						id='image-name'
 						name='image'
 						type='file'
+						accept='.jpg, .jpeg, .png, .bmp'
 						placeholder='upload file...'
 						css={{
 							borderRadius: 5,

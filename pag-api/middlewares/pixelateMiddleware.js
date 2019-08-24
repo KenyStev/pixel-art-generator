@@ -15,9 +15,8 @@ const pixelate = function (req, res, next) {
 			.blur(2)
 			.pixelate(10)
 			.write(imagepxPath);
+		next();
 	});
-
-	next();
 }
 
 module.exports = pixelate;

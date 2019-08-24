@@ -1,7 +1,7 @@
 import React from 'react';
 import { connect } from 'react-redux';
 import { IState } from '../../reducer'
-import { imageUploadRequest } from './actions';
+import { imageUploadRequest, pixelateImageRequest } from './actions';
 import { dashboardSelector, IStateDashboard } from './reducers';
 import { Flex, Box } from 'rebass';
 import Loader from '../../components/presentationals/Loader';
@@ -15,6 +15,7 @@ interface IDashboardState {
 interface IDashboardProps {
 	dashboard: IStateDashboard;
 	imageUploadRequest: typeof imageUploadRequest;
+	pixelateImageRequest: typeof pixelateImageRequest;
 }
 
 class Dashboard extends React.Component<IDashboardProps, IDashboardState> {
@@ -35,7 +36,7 @@ class Dashboard extends React.Component<IDashboardProps, IDashboardState> {
 						this.setState({imageToUpload});
 						this.props.imageUploadRequest(imageToUpload || {});
 					}}
-					onClick={() => {}}
+					onClick={() => {this.props.pixelateImageRequest(uploadedImageData.filename)}}
 				/>
 				<Flex
 					justifyContent='center'
@@ -67,7 +68,8 @@ const mapStateToProps = (state: IState) => ({
 });
 
 const mapDispatchToProps = {
-	imageUploadRequest: imageUploadRequest
+	imageUploadRequest: imageUploadRequest,
+	pixelateImageRequest: pixelateImageRequest
 };
 
 export default connect(
