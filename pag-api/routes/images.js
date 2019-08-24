@@ -20,7 +20,7 @@ router.post('/', uploadImage.single('image'), function(req, res, next) {
 });
 
 router.get('/pixelated', pixelate, function(req, res, next) {
-	res.json({pixelatedImageUrl: `/images/pixelated/${req.query.imageName}`});
+	res.json({pixelatedImageUrl: `/images/pixelated/${req.query.imageName}`, bitmap: req.bitmap});
 	next();
 });
 

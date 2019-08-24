@@ -15,6 +15,7 @@ const pixelate = function (req, res, next) {
 			.blur(2)
 			.pixelate(10)
 			.write(imagepxPath);
+		req.bitmap = image.clone().resize(64, 64).bitmap;
 		next();
 	});
 }

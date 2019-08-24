@@ -7,6 +7,8 @@ import { Flex, Box } from 'rebass';
 import Loader from '../../components/presentationals/Loader';
 import UploadForm from '../../components/presentationals/UploadForm';
 import DisplayImage from '../../components/presentationals/DisplayImage';
+import ImageToCss from '../../components/presentationals/ImageToCss';
+import { WIDTH, HEIGHT } from '../../utils/imageProcessing';
 
 interface IDashboardState {
 	imageToUpload: File | null;
@@ -42,10 +44,10 @@ class Dashboard extends React.Component<IDashboardProps, IDashboardState> {
 					justifyContent='center'
 					alignItems='center'
 					sx={{
-						maxWidth: 512,
+						maxWidth: WIDTH,
 						mx: 'auto'
 					}}
-					height={512}
+					height={HEIGHT}
 					css={{
 						margin: 'auto',
 						border: '1px solid #2590dc'
@@ -58,6 +60,7 @@ class Dashboard extends React.Component<IDashboardProps, IDashboardState> {
 						loader={(loading) => (loading && <Loader size={80} />)}
 					/>
 				</Flex>
+				{ pixelatedImageData && <ImageToCss pixelatedImageData={pixelatedImageData} /> }
 			</Box>
 		)
 	}

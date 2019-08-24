@@ -48,7 +48,13 @@ const dashboardReducer: Reducer<IStateDashboard> = (
 			return {
 				...initialState,
 				uploadedImageData: state.uploadedImageData,
-				pixelatedImageData: action.payload
+				pixelatedImageData: {
+					...action.payload,
+					bitmap: {
+						...action.payload.bitmap,
+						data: action.payload.bitmap.data.data
+					}
+				}
 			}
 		case pixelateImageError.getType():
 			return {

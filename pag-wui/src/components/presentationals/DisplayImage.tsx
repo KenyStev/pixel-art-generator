@@ -1,11 +1,8 @@
 import React from 'react';
 import { Box, Image } from 'rebass';
 import { HOSTNAME } from '../../utils/api';
+import { path, WIDTH, HEIGHT } from '../../utils/imageProcessing';
 import styled from 'styled-components';
-
-const WIDTH = 512;
-const HEIGHT = 512;
-const path = (imagePath: string) => `${HOSTNAME}${imagePath}`;
 
 const LoaderBox = styled(Box)`
 	display: flex;
