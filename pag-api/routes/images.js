@@ -11,17 +11,15 @@ router.post('/', uploadImage.single('image'), function(req, res, next) {
   const imagePath = path.join(__dirname, 'public/images');
 
   if (!req.file) {
-  	res.status(401).json({error: 'Image not found, please provide an image'});
-  	return next(err);
+  	return res.status(401).json({error: 'Image not found, please provide an image'});
   }
 
   debug('passed upload image');
-  res.json({imageUrl: `/images/raw/${req.file.filename}`, filename: req.file.filename});
+  return res.json({imageUrl: `/images/raw/${req.file.filename}`, filename: req.file.filename});
 });
 
 router.get('/pixelated', pixelate, function(req, res, next) {
-	res.json({pixelatedImageUrl: `/images/pixelated/${req.query.imageName}`, bitmap: req.bitmap});
-	next();
+	return res.json({pixelatedImageUrl: `/images/pixelated/${req.query.imageName}`, bitmap: req.bitmap});
 });
 
 module.exports = router;

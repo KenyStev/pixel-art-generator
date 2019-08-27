@@ -1,6 +1,6 @@
 import React from 'react';
 import { Flex, Box } from 'rebass';
-import { path, getPixel, IBitmap, WIDTH } from '../../utils/imageProcessing';
+import { getPixel, IBitmap, WIDTH } from '../../utils/imageProcessing';
 import shortid from 'shortid';
 
 export interface IPixelatedImage {

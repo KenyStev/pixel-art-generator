@@ -1,8 +1,8 @@
 import React from 'react';
 import { Box, Image } from 'rebass';
-import { HOSTNAME } from '../../utils/api';
 import { path, WIDTH, HEIGHT } from '../../utils/imageProcessing';
 import styled from 'styled-components';
+import ImageToCss from './ImageToCss'
 
 const LoaderBox = styled(Box)`
 	display: flex;
@@ -44,7 +44,7 @@ const DisplayImage: React.FC<IDisplayImageProps> = ({
 		}
 		{ !uploadedImageData && !pixelatedImageData && 'no image selected' }
 		{ uploadedImageData && !pixelatedImageData && <Image width={1} height={HEIGHT} src={path(uploadedImageData.imageUrl)} />}
-		{ pixelatedImageData && <Image width={1} height={HEIGHT} src={path(pixelatedImageData.pixelatedImageUrl)} />}
+		{ pixelatedImageData && <ImageToCss pixelatedImageData={pixelatedImageData} />}
 	</Box>
 )
 
