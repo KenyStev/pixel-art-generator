@@ -9,25 +9,28 @@ const pixelate = function (req, res, next) {
 		const imagePath = `./public/images/raw/${req.query.imageName}`;
 		const imagepxPath = `./public/images/pixelated/${req.query.imageName}`;
 
-		if (!err) {
+		if (!err && data.pixelated) {
 			Jimp.read(imagepxPath, (err, image) => {
 				if(err) throw err;
 				req.bitmap = image.resize(64, 64).bitmap;
 				next();
 			});
+		}else{
+			Jimp.read(imagePath, (err, image) => {
+				if(err) throw err;
+				image
+					.resize(512, 512)
+					.gaussian(2)
+					.blur(2)
+					.pixelate(10)
+					.write(imagepxPath);
+				req.bitmap = image.clone().resize(64, 64).bitmap;
+				dbServices.update({...data, pixelated: true}, () => {
+					next();
+				})
+			});
 		}
 
-		Jimp.read(imagePath, (err, image) => {
-			if(err) throw err;
-			image
-				.resize(512, 512)
-				.gaussian(2)
-				.blur(2)
-				.pixelate(10)
-				.write(imagepxPath);
-			req.bitmap = image.clone().resize(64, 64).bitmap;
-			next();
-		});
 	});
 }
 

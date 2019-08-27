@@ -19,7 +19,14 @@ const insert = function(image, next) {
 		.catch(console.log)
 }
 
+const update = function(image, next) {
+	db.none('update images set pixelated = $/pixelated/ where id = $/id/', image)
+		.then(next)
+		.catch(console.log)
+}
+
 module.exports = {
 	find,
-	insert
+	insert,
+	update
 };
