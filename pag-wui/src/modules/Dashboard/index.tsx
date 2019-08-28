@@ -1,7 +1,7 @@
 import React from 'react';
 import { connect } from 'react-redux';
 import { IState } from '../../reducer'
-import { imageUploadRequest, pixelateImageRequest } from './actions';
+import { imageTestUploadRequest, imageUploadRequest, pixelateImageRequest } from './actions';
 import { dashboardSelector, IStateDashboard } from './reducers';
 import { Flex, Box } from 'rebass';
 import Loader from '../../components/presentationals/Loader';
@@ -15,6 +15,7 @@ interface IDashboardState {
 
 interface IDashboardProps {
 	dashboard: IStateDashboard;
+	imageTestUploadRequest: typeof imageTestUploadRequest;
 	imageUploadRequest: typeof imageUploadRequest;
 	pixelateImageRequest: typeof pixelateImageRequest;
 }
@@ -35,7 +36,8 @@ class Dashboard extends React.Component<IDashboardProps, IDashboardState> {
 						const imageToUpload = event.target.files[0];
 
 						this.setState({imageToUpload});
-						this.props.imageUploadRequest(imageToUpload || {});
+						this.props.imageTestUploadRequest(imageToUpload || {});
+						{/*this.props.imageUploadRequest(imageToUpload || {});*/}
 					}}
 					onClick={() => {this.props.pixelateImageRequest(uploadedImageData.filename)}}
 				/>
@@ -69,6 +71,7 @@ const mapStateToProps = (state: IState) => ({
 });
 
 const mapDispatchToProps = {
+	imageTestUploadRequest: imageTestUploadRequest,
 	imageUploadRequest: imageUploadRequest,
 	pixelateImageRequest: pixelateImageRequest
 };

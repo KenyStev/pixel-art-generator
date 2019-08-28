@@ -1,8 +1,10 @@
 import { Reducer } from 'redux';
 import { IState } from '../../../reducer';
 import {
+	imageTestUploadRequest, imageAlreadyUploadedRequest,
 	imageUploadRequest, imageUploadSuccess, imageUploadError,
 	pixelateImageRequest, pixelateImageSuccess, pixelateImageError
+
 } from '../actions';
 
 export interface IStateDashboard {
@@ -24,6 +26,16 @@ const dashboardReducer: Reducer<IStateDashboard> = (
 	action
 ) => {
 	switch (action.type) {
+		case imageTestUploadRequest.getType():
+			return {
+				...state,
+				fetching: true
+			}
+		case imageAlreadyUploadedRequest.getType():
+			return {
+				...initialState,
+				uploadedImageData: action.payload
+			}
 		case imageUploadRequest.getType():
 			return {
 				...state,

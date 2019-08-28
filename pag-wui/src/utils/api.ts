@@ -15,3 +15,13 @@ export interface IGetPixelatedImageQuery {
 export const getPixelatedImage = (
 	params: IGetPixelatedImageQuery
 ) => makeRequest(`${HOSTNAME}/images/pixelated?${stringify(params)}`, 'GET', '');
+
+export interface IGetTestUploadImageQuery {
+	testImage: string;
+
+	[key: string]: any;
+}
+
+export const getTestImage = (
+	params: IGetTestUploadImageQuery
+) => makeRequest(`${HOSTNAME}/images/test?${stringify(params)}`, 'GET', '');

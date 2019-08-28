@@ -25,8 +25,23 @@ const update = function(image, next) {
 		.catch(console.log)
 }
 
+const test = function(req, res, next) {
+	db.one('select * from images where core_name = $1 OR full_name = $1', req.query.testImage)
+		.then(data => {
+			console.log("select one: ", data);
+			req.context = data;
+			next(null, req, res);
+		})
+		.catch(err => {
+			console.log(err);
+			res.status(404).json({message: "image not found"});
+			// return next(err);
+		});
+}
+
 module.exports = {
 	find,
 	insert,
-	update
+	update,
+	test
 };
