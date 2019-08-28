@@ -1,5 +1,5 @@
 const pgp = require('pg-promise')();
-const db = pgp(process.env.DB_CONNECTION || "postgres://postgres:pa4sswo0rdb@localhost:5432/pixelart_db");
+const db = pgp(`postgres://postgres:pa4sswo0rdb@${process.env.DB_CONNECTION || 'localhost'}:5432/pixelart_db`);
 
 db.any("SELECT * FROM images")
     .then(function (data) {
